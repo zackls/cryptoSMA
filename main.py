@@ -44,6 +44,8 @@ if __name__ == '__main__':
         # initialize socket with pair and callback
         ws = BinanceSocket(pair=pair, on_price=on_price)
 
+        ws.start()
+
     # ensure the connection is closed when exiting
     except KeyboardInterrupt as e:
         if ws:

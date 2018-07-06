@@ -27,9 +27,13 @@ class BinanceSocket:
             on_close=self.on_close,
             **kwargs
         )
+        self.is_open = False
 
+    def start(self):
+        self.is_open = True
         # run the websocket indefinitely
         self.ws.run_forever()
+
 
     def on_message(self, ws, message):
         ''' called when the socket receives data
@@ -54,9 +58,10 @@ class BinanceSocket:
     def on_close(self, ws):
         ''' let the user know the connection has successfully closed
         '''
+        self.is_open = False
         logging.info('Connection closed successfully')
 
-    def close():
+    def close(self):
         ''' simply close the connection
         '''
         self.ws.close()
